@@ -59,10 +59,10 @@ const Home: React.FC<NextPageContext> = ({ pathname }) => {
         <MastHead background={modifiedValues.header.background}>
             <div className="container">
                 <div className="masthead-subheading">
-                    {modifiedValues.header.title}
+                    {modifiedValues.header.subtitle}
                 </div>
                 <div className="masthead-heading text-uppercase">
-                    {modifiedValues.header.subtitle}
+                    {modifiedValues.header.title}
                 </div>
             </div>
         </MastHead>
