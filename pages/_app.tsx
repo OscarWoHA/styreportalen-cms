@@ -49,5 +49,5 @@ const SPApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
 export default withTina(SPApp, {
     enabled: true,
-    sidebar: process.env.NODE_ENV !== "production",
+    sidebar: process.env.BUILD_ENV !== "website",
 })
