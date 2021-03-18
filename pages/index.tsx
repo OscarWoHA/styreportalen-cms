@@ -1,16 +1,7 @@
 import { useForm, usePlugin } from "@tinacms/react-core"
 import { NextPageContext } from "next"
 import React from "react"
-import styled from "styled-components"
-
-const MastHead = styled.header<{ background?: string }>`
-    background-image: url("${(props) => props.background}");
-`
-
-MastHead.defaultProps = {
-    background: "/default-header.jpg",
-    className: "masthead",
-}
+import MastHead from "./index/MastHead"
 
 const Home: React.FC<NextPageContext> = ({ pathname }) => {
     const [modifiedValues, form] = useForm<{
@@ -56,16 +47,7 @@ const Home: React.FC<NextPageContext> = ({ pathname }) => {
     usePlugin(form)
 
     return (
-        <MastHead background={modifiedValues.header.background}>
-            <div className="container">
-                <div className="masthead-subheading">
-                    {modifiedValues.header.subtitle}
-                </div>
-                <div className="masthead-heading text-uppercase">
-                    {modifiedValues.header.title}
-                </div>
-            </div>
-        </MastHead>
+        <MastHead subtitle={modifiedValues.header.subtitle} title={modifiedValues.header.title} background={modifiedValues.header.background} />
     )
 }
 

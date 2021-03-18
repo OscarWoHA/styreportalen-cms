@@ -1,10 +1,13 @@
 import React from "react"
 import { AppProps } from "next/app"
-import { withTina } from "tinacms"
+import { useCMS, withTina } from "tinacms"
 import Head from "next/head"
 import Navbar from "../components/Navbar"
+import { FirebaseMediaStore } from "../components/FirebaseMediaStore"
 
 const SPApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+
+
     return (
         <React.Fragment>
             <Head>
@@ -19,7 +22,7 @@ const SPApp: React.FC<AppProps> = ({ Component, pageProps }) => {
                 <script
                     src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
                     crossOrigin="anonymous"
-                ></script>
+                 />
                 <link
                     href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
                     rel="stylesheet"
@@ -39,10 +42,10 @@ const SPApp: React.FC<AppProps> = ({ Component, pageProps }) => {
             </Head>
             <Navbar />
             <Component {...pageProps} />
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-            <script src="/scripts.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" />
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" />
+            <script src="/scripts.js" />
         </React.Fragment>
     )
 }
@@ -50,4 +53,5 @@ const SPApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 export default withTina(SPApp, {
     enabled: true,
     sidebar: process.env.BUILD_ENV !== "website",
+    media: new FirebaseMediaStore()
 })
