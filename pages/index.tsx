@@ -1,3 +1,4 @@
+import { Media } from "@tinacms/core"
 import { useForm, usePlugin } from "@tinacms/react-core"
 import { NextPageContext } from "next"
 import React from "react"
@@ -5,7 +6,7 @@ import MastHead from "./index/MastHead"
 
 const Home: React.FC<NextPageContext> = ({ pathname }) => {
     const [modifiedValues, form] = useForm<{
-        header: { title: string; subtitle: string; background?: string }
+        header: { title: string; subtitle: string; background?: Media }
     }>({
         id: pathname,
         label: "Rediger forsiden",
@@ -29,6 +30,7 @@ const Home: React.FC<NextPageContext> = ({ pathname }) => {
                         name: "background",
                         label: "Bakgrunn",
                         component: "image",
+                        previewSrc: (media) => media.previewSrc,
                     },
                 ],
             },
@@ -47,7 +49,11 @@ const Home: React.FC<NextPageContext> = ({ pathname }) => {
     usePlugin(form)
 
     return (
-        <MastHead subtitle={modifiedValues.header.subtitle} title={modifiedValues.header.title} background={modifiedValues.header.background} />
+        <MastHead
+            subtitle={modifiedValues.header.subtitle}
+            title={modifiedValues.header.title}
+            background={modifiedValues.header.background}
+        />
     )
 }
 
